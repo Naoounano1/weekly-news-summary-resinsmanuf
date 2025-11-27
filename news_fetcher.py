@@ -89,9 +89,9 @@ def generate_email_body():
     return email_top + "\n\n\n" + "\n".join(detailed_sections)
 
 def send_email(body):
-    sender = os.environ["MAIL_USER"]
-    password = os.environ["MAIL_PASS"]
-    recipient = os.environ["MAIL_TO"]
+    sender = os.environ["EMAIL_USER"]
+    password = os.environ["EMAIL_PASS"]
+    recipient = os.environ["EMAIL_TO"]
 
     msg = MIMEMultipart()
     msg["Subject"] = "Weekly News Summary"
