@@ -2,15 +2,15 @@ name: Weekly News Summary
 
 on:
   schedule:
-    - cron: "0 8 * * 1"   # Runs every Monday at 08:00 UTC
-  workflow_dispatch:       # allows manual run
+    - cron: "0 8 * * 1"  # Runs every Monday at 8:00 UTC
+  workflow_dispatch:     # allows manual run
 
 jobs:
   run-news-summary:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
+    - name: Checkout repository
       uses: actions/checkout@v4
 
     - name: Set up Python
@@ -21,9 +21,9 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
 
-    - name: Run script
+    - name: Run news fetcher script
       env:
-        EMAIL_USER: ${{ secrets.EMAIL_USER }}
-        EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-        EMAIL_TO:   ${{ secrets.EMAIL_TO }}
+        MAIL_USER: ${{ secrets.MAIL_USER }}
+        MAIL_PASS: ${{ secrets.MAIL_PASS }}
+        MAIL_TO: ${{ secrets.MAIL_TO }}
       run: python news_fetcher.py
