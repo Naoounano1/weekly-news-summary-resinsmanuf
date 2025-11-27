@@ -88,6 +88,12 @@ def generate_email_body():
 
     return email_top + "\n\n\n" + "\n".join(detailed_sections)
 
+import os
+print("ENVIRONMENT VARIABLES AVAILABLE:")
+for k, v in os.environ.items():
+    if 'EMAIL' in k:
+        print(f"{k}: {v}")
+
 def send_email(body):
     sender = os.environ["EMAIL_USER"]
     password = os.environ["EMAIL_PASS"]
