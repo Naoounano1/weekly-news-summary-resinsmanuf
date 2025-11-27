@@ -23,7 +23,7 @@ jobs:
 
     - name: Run news fetcher script
       env:
-        MAIL_USER: ${{ secrets.EMAIL_USER }}
-        MAIL_PASS: ${{ secrets.EMAIL_PASS }}
-        MAIL_TO: ${{ secrets.EMAIL_TO }}
+        EMAIL_USER: ${{ secrets.EMAIL_USER }}
+        EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+        EMAIL_TO: ${{ secrets.EMAIL_TO }}
       run: python news_fetcher.py
