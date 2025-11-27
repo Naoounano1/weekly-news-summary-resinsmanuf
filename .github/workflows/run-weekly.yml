@@ -1,1 +1,29 @@
-.github/workflows/run-weekly.yml
+name: Weekly News Summary
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"   # Runs every Monday at 08:00 UTC
+  workflow_dispatch:       # allows manual run
+
+jobs:
+  run-news-summary:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run script
+      env:
+        EMAIL_USER: ${{ secrets.EMAIL_USER }}
+        EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+        EMAIL_TO:   ${{ secrets.EMAIL_TO }}
+      run: python news_fetcher.py
